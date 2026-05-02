@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="hi"
+
+<head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive Election Education Assistant - Learn about voter registration, voting methods, election timelines, and your voting rights. Comprehensive, nonpartisan voter education for all.">
+    <meta name="keywords" content="election, voting, voter education, registration, elections, civics">
+    <meta name="author" content="Election Education Team">
+    <meta name="theme-color" content="#1e40af">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' www.googletagmanager.com www.google-analytics.com www.google.com www.gstatic.com maps.googleapis.com translate.google.com translate.googleapis.com www.youtube.com firebaseapp.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com translate.google.com; img-src 'self' data: www.google-analytics.com maps.googleapis.com maps.gstatic.com www.gstatic.com; connect-src 'self' www.google-analytics.com www.googletagmanager.com www.googleapis.com maps.googleapis.com www.google.com translate.googleapis.com firebaseapp.com">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Election Education Mitra">
+    <meta property="og:description" content="Interactive guide to understanding elections, voting, and civic participation.">
+    <meta property="og:url" content="https://storage.googleapis.com/voterdetails-election-app/">
+    <meta property="og:site_name" content="Election Education Mitra">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Election Education Mitra">
+    <meta name="twitter:description" content="Learn about elections and voting in an interactive, easy-to-understand way.">
+    
+    <!-- Title & Styles -->
+    <title>Election Education Mitra - Learn About Voting & Elections</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Google Services APIs -->
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script async src="https://apis.google.com/js/platform.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🗳️ Election Education Mitra</h1>
+                <p>Learn about election processes, timelines, and voting in an interactive way</p>
+            </div>
+            <!-- Google Translate Widget -->
+            <div class="language-selector">
+                <div id="google_translate_element"></div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content" role="main" aria-label="Main content area">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar" role="complementary" aria-label="Navigation menu">
+                <nav class="nav-menu" aria-label="Topics navigation">
+                    <h3>Topics</h3>
+                    <div class="search-box" role="search">
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search topics..." aria-label="Search election topics">
+                        <button id="searchBtn" class="search-btn" aria-label="Search button" title="Search">🔍</button>
+                    </div>
+                    <div id="searchResults" class="search-results" aria-live="polite" aria-label="Search results"></div>
+                    <button class="nav-btn active" data-topic="welcome" aria-selected="true">Welcome</button>
+                    <button class="nav-btn" data-topic="voter-registration">Voter Registration</button>
+                    <button class="nav-btn" data-topic="voting-methods">Voting Methods</button>
+                    <button class="nav-btn" data-topic="election-timeline">Election Timeline</button>
+                    <button class="nav-btn" data-topic="voting-process">Voting Process</button>
+                    <button class="nav-btn" data-topic="vote-counting">Vote Counting</button>
+                    <button class="nav-btn" data-topic="voter-rights">Voter Rights</button>
+                    <button class="nav-btn" data-topic="election-types">Election Types</button>
+                    <button class="nav-btn" data-topic="faq">FAQ</button>
+                    <hr style="margin: 15px 0; border: none; border-top: 1px solid #ccc;">
+                    <h3>Google Services</h3>
+                    <button class="nav-btn" data-topic="polling-locations">Find Polling Locations</button>
+                    <button class="nav-btn" data-topic="election-timeline-calendar">Election Calendar</button>
+                    <button class="nav-btn" data-topic="voter-quiz">Voter Knowledge Quiz</button>
+                    <button class="nav-btn" data-topic="video-resources">📹 Video Resources</button>
+                    <button class="nav-btn" data-topic="shareable-docs">📄 Share Documents</button>
+                </nav>
+            </aside>
+
+            <!-- Content Area -->
+            <section class="content" role="region" aria-label="Topic content">
+                <!-- Welcome Section -->
+                <div class="topic-content active" id="welcome" aria-hidden="false">
+                    <h2>Welcome to Election Education!</h2>
+                    <p>This interactive guide will help you understand how elections work, from registration to vote counting.</p>
+                    <div class="info-box" role="complementary" aria-label="Learning objectives">
+                        <h3>What will you learn?</h3>
+                        <ul>
+                            <li>✅ How to register to vote</li>
+                            <li>✅ Different voting methods available to you</li>
+                            <li>✅ Important election dates and deadlines</li>
+                            <li>✅ What happens on Election Day</li>
+                            <li>✅ How votes are counted and certified</li>
+                            <li>✅ Your rights as a voter</li>
+                        </ul>
+                    </div>
+                    <div class="action-box" role="complementary" aria-label="Call to action">
+                        <p>👉 <strong>Start exploring:</strong> Click on any topic in the menu to the left!</p>
+                    </div>
+                </div>
+
+                <!-- Voter Registration -->
+                <div class="topic-content" id="voter-registration" aria-hidden="true">
+                    <h2>Voter Registration</h2>
+                    <p>Before you can vote, you need to register. Here's what you need to know:</p>
+                    
+                    <h3>📋 Eligibility Requirements</h3>
+                    <ul>
+                        <li>Must be at least 18 years old (on or before Election Day)</li>
+                        <li>Must be a U.S. citizen</li>
+                        <li>Must be a resident of the state</li>
+                        <li>Cannot have certain felony convictions (varies by state)</li>
+                    </ul>
+
+                    <h3>📝 How to Register</h3>
+                    <ol class="steps">
+                        <li><strong>Online:</strong> Visit your state's election website to register online</li>
+                        <li><strong>In Person:</strong> Visit your local election office or DMV</li>
+                        <li><strong>Mail:</strong> Complete a voter registration form and mail it</li>
+                        <li><strong>When Registering:</strong> Provide your driver's license or SSN</li>
+                    </ol>
+
+                    <h3>⏰ Key Deadlines</h3>
+                    <div class="timeline-item">
+                        <strong>Typically 15-30 days before Election Day</strong>
+                        <p>Registration deadline varies by state—check your local election office!</p>
+                    </div>
+
+                    <h3>💡 Pro Tips</h3>
+                    <ul class="tips">
+                        <li>Register early to avoid last-minute issues</li>
+                        <li>Double-check your information after registering</li>
+                        <li>Update your registration if you move</li>
+                        <li>Contact your local election office if you're unsure of your registration status</li>
+                    </ul>
+                </div>
+
+                <!-- Voting Methods -->
+                <div class="topic-content" id="voting-methods" aria-hidden="true">
+                    <h2>Voting Methods</h2>
+                    <p>You have several options for how to cast your vote. Here are the main methods:</p>
+
+                    <h3>🏛️ In-Person Voting on Election Day</h3>
+                    <div class="method-box">
+                        <p><strong>When:</strong> Election Day (first Tuesday after the first Monday in November)</p>
+                        <p><strong>Where:</strong> Your assigned polling place</p>
+                        <p><strong>What to bring:</strong> Varies by state; photo ID often required</p>
+                        <p><strong>Best for:</strong> Those who prefer voting in person</p>
+                    </div>
+
+                    <h3>🗳️ Early Voting</h3>
+                    <div class="method-box">
+                        <p><strong>When:</strong> Typically 10-20 days before Election Day</p>
+                        <p><strong>Where:</strong> Election offices or designated early voting locations</p>
+                        <p><strong>Duration:</strong> Extended hours available</p>
+                        <p><strong>Best for:</strong> People with busy schedules</p>
+                    </div>
+
+                    <h3>✉️ Mail-in/Absentee Ballots</h3>
+                    <div class="method-box">
+                        <p><strong>When:</strong> Apply weeks before; vote when ballot arrives</p>
+                        <p><strong>How:</strong> Request a ballot, receive it by mail, complete, and return it</p>
+                        <p><strong>Deadline:</strong> Return by Election Day (typically by mail or in-person)</p>
+                        <p><strong>Best for:</strong> Those unable to vote in person</p>
+                    </div>
+
+                    <h3>📋 Provisional Voting</h3>
+                    <div class="method-box">
+                        <p><strong>When:</strong> Election Day only</p>
+                        <p><strong>Why:</strong> If there's a question about your registration or eligibility</p>
+                        <p><strong>How:</strong> Your vote is counted after verification</p>
+                        <p><strong>Best for:</strong> Last resort voting option</p>
+                    </div>
+                </div>
+
+                <!-- Election Timeline -->
+                <div class="topic-content" id="election-timeline" aria-hidden="true">
+                    <h2>2024 U.S. Election Timeline</h2>
+                    <p>Here's a timeline of key dates and deadlines for the 2024 election:</p>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">January - March 2024</div>
+                            <div class="timeline-content">
+                                <strong>Early Contests & Caucuses</strong>
+                                <p>Iowa caucuses, New Hampshire primary, and other early contests</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">Summer 2024</div>
+                            <div class="timeline-content">
+                                <strong>Party Conventions</strong>
+                                <p>Democratic and Republican National Conventions</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">September - October 2024</div>
+                            <div class="timeline-content">
+                                <strong>Campaign Period & Debates</strong>
+                                <p>Presidential debates and intensive campaigning</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">October 15, 2024</div>
+                            <div class="timeline-content">
+                                <strong>Voter Registration Deadline</strong>
+                                <p>(Approximately 15-30 days before Election Day—varies by state)</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">October 22-November 4, 2024</div>
+                            <div class="timeline-content">
+                                <strong>Early Voting Period</strong>
+                                <p>In-person early voting available in most states</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">November 5, 2024</div>
+                            <div class="timeline-content">
+                                <strong>Election Day!</strong>
+                                <p>General Election Day—voting polls open from early morning to evening</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">November - December 2024</div>
+                            <div class="timeline-content">
+                                <strong>Vote Counting & Certification</strong>
+                                <p>Results counted, audited, and certified by states</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">December 17, 2024</div>
+                            <div class="timeline-content">
+                                <strong>Electoral College Vote</strong>
+                                <p>Electors meet in their states to cast votes</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">January 20, 2025</div>
+                            <div class="timeline-content">
+                                <strong>Inauguration Day</strong>
+                                <p>New president takes office</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-box">
+                        <p><strong>Note:</strong> Dates may vary by state. Check with your local election office for specific deadlines in your area.</p>
+                    </div>
+                </div>
+
+                <!-- Voting Process -->
+                <div class="topic-content" id="voting-process" aria-hidden="true">
+                    <h2>The Voting Process: Step-by-Step</h2>
+                    <p>Here's what to expect when you vote:</p>
+
+                    <h3>📍 Before You Go</h3>
+                    <ol class="steps">
+                        <li>Find your polling place (check your voter registration card or your state's website)</li>
+                        <li>Gather required documents (photo ID, voter card, or other proof of residency)</li>
+                        <li>Plan your route and timing</li>
+                    </ol>
+
+                    <h3>🏛️ At the Polling Place</h3>
+                    <ol class="steps">
+                        <li><strong>Check In:</strong> Tell poll workers your name and address</li>
+                        <li><strong>Verify Registration:</strong> They'll check your voter registration</li>
+                        <li><strong>Receive Ballot:</strong> Get your official ballot or access voting machine</li>
+                        <li><strong>Enter Voting Booth:</strong> Go to a private booth to mark your choices</li>
+                        <li><strong>Mark Your Choices:</strong> Select candidates and issues carefully</li>
+                        <li><strong>Review:</strong> Double-check your selections before submitting</li>
+                        <li><strong>Submit:</strong> Scan, feed into machine, or hand to poll worker</li>
+                        <li><strong>Get "I Voted" Sticker:</strong> Celebrate your participation!</li>
+                    </ol>
+
+                    <h3>💡 Helpful Tips</h3>
+                    <ul class="tips">
+                        <li>Bring your voter registration card if you have it</li>
+                        <li>Arrive early to avoid long lines</li>
+                        <li>Research candidates/issues beforehand using your state's voter guide</li>
+                        <li>Don't worry if you make a mistake—ask poll workers for a new ballot</li>
+                        <li>You have the right to assistance if needed (visual/physical disabilities)</li>
+                        <li>Lines can get long near closing—vote early in the day if possible</li>
+                    </ul>
+
+                    <h3>⚖️ Your Rights at the Polling Place</h3>
+                    <ul>
+                        <li>Vote free from intimidation or harassment</li>
+                        <li>Have your registration verified</li>
+                        <li>Get assistance if needed (someone can help read or mark)</li>
+                        <li>Request a new ballot if you make a mistake</li>
+                        <li>Cast a provisional ballot if your registration is questioned</li>
+                    </ul>
+                </div>
+
+                <!-- Vote Counting -->
+                <div class="topic-content" id="vote-counting" aria-hidden="true">
+                    <h2>How Votes Are Counted</h2>
+                    <p>After Election Day, election officials carefully count and verify votes. Here's how it works:</p>
+
+                    <h3>📊 Vote Counting Process</h3>
+                    <ol class="steps">
+                        <li><strong>Close the Polls:</strong> Voting stops at designated times</li>
+                        <li><strong>Initial Count:</strong> Poll workers count paper ballots or machines produce reports</li>
+                        <li><strong>Local Tallying:</strong> Results from each precinct are compiled</li>
+                        <li><strong>County Aggregation:</strong> Precinct results are totaled by county</li>
+                        <li><strong>State Reporting:</strong> County results reported to state officials</li>
+                    </ol>
+
+                    <h3>🔍 Verification & Auditing</h3>
+                    <ul>
+                        <li><strong>Risk-Limiting Audits:</strong> Random samples of ballots audited for accuracy</li>
+                        <li><strong>Recounts:</strong> If margin is close, machines recount votes</li>
+                        <li><strong>Hand Counts:</strong> Election officials may hand-count sample ballots</li>
+                        <li><strong>Chain of Custody:</strong> All ballots secure and tracked throughout process</li>
+                    </ul>
+
+                    <h3>📜 Certification</h3>
+                    <div class="timeline-item">
+                        <strong>County Level:</strong> Election officials certify county results
+                        <p>Then state officials certify statewide results</p>
+                        <p>Finally, Congress meets in January to count electoral votes</p>
+                    </div>
+
+                    <h3>🛡️ Election Security</h3>
+                    <ul>
+                        <li><strong>Paper Ballots/Records:</strong> Auditable paper trail for every vote</li>
+                        <li><strong>Poll Observers:</strong> Authorized observers from parties and campaigns present</li>
+                        <li><strong>Election Integrity:</strong> Multiple checks to detect fraud or errors</li>
+                        <li><strong>Sealed & Secured:</strong> Ballots locked, stored, and guarded</li>
+                    </ul>
+
+                    <h3>⏰ Timeline</h3>
+                    <p><strong>Election Night to Certification:</strong> Usually complete within 30 days, but some states allow up to 35 days</p>
+                </div>
+
+                <!-- Voter Rights -->
+                <div class="topic-content" id="voter-rights" aria-hidden="true">
+                    <h2>Your Voting Rights & Protections</h2>
+                    <p>The law protects your right to vote. Here's what you need to know:</p>
+
+                    <h3>✅ Your Right to Vote</h3>
+                    <ul>
+                        <li>Vote without intimidation or coercion</li>
+                        <li>Vote your conscience without pressure</li>
+                        <li>Privacy in the voting booth</li>
+                        <li>Access to voter registration</li>
+                        <li>Assistance if you need it</li>
+                    </ul>
+
+                    <h3>♿ Accessibility Rights</h3>
+                    <ul>
+                        <li><strong>Accessible Polling Places:</strong> Wheelchair access, accessible voting machines</li>
+                        <li><strong>Assistance:</strong> Can bring someone to help read or mark ballot</li>
+                        <li><strong>Curbside Voting:</strong> If you can't enter the polling place</li>
+                        <li><strong>Language Assistance:</strong> Materials in multiple languages where required</li>
+                        <li><strong>Visual Impairment:</strong> Audio ballots and tactile machines available</li>
+                    </ul>
+
+                    <h3>🔒 Privacy & Secrecy</h3>
+                    <ul>
+                        <li>Your vote is secret—it cannot be traced to you</li>
+                        <li>No one can see how you voted</li>
+                        <li>No one can force you to reveal your vote</li>
+                        <li>Ballots are anonymous</li>
+                    </ul>
+
+                    <h3>⚠️ Protected from Discrimination</h3>
+                    <p>You cannot be denied the right to vote based on:</p>
+                    <ul>
+                        <li>Race or color</li>
+                        <li>Religion</li>
+                        <li>Sex</li>
+                        <li>Language</li>
+                        <li>National origin</li>
+                        <li>Disability</li>
+                        <li>Age (if 18+)</li>
+                    </ul>
+
+                    <h3>📝 If Your Rights Are Violated</h3>
+                    <ul class="steps">
+                        <li>Report the issue to poll workers immediately</li>
+                        <li>Ask for a poll observer or election official</li>
+                        <li>Contact your local election office</li>
+                        <li>Call voting rights hotlines (numbers available through your state)</li>
+                        <li>Document what happened (date, time, witnesses)</li>
+                    </ul>
+                </div>
+
+                <!-- Election Types -->
+                <div class="topic-content" id="election-types" aria-hidden="true">
+                    <h2>Types of Elections</h2>
+                    <p>There are different kinds of elections you may participate in:</p>
+
+                    <h3>🏛️ Presidential Elections</h3>
+                    <div class="method-box">
+                        <p><strong>When:</strong> Every 4 years (2024, 2028, etc.)</p>
+                        <p><strong>What:</strong> You vote for President and Vice President</p>
+                        <p><strong>Federal Position:</strong> Highest office in the U.S.</p>
+                        <p><strong>Importance:</strong> Sets national direction for 4 years</p>
+                    </div>
+
+                    <h3>📊 Midterm Elections</h3>
+                    <div class="method-box">
+                        <p><strong>When:</strong> Every 2 years between presidential elections (2022, 2026, etc.)</p>
+                        <p><strong>What:</strong> Vote for Congress (House & Senate members) and state officials</p>
+                        <p><strong>Impact:</strong> Determine legislative power</p>
+                        <p><strong>Often Overlooked:</strong> Yet crucial for local issues</p>
+                    </div>
+
+                    <h3>🌟 Primary Elections</h3>
+                    <div class="method-box">
+                        <p><strong>When:</strong> Early in election year (January-June typically)</p>
+                        <p><strong>What:</strong> Parties select their nominees for general election</p>
+                        <p><strong>Open/Closed:</strong> Varies by state—some allow anyone, others require party membership</p>
+                        <p><strong>Why Important:</strong> Help choose general election candidates</p>
+                    </div>
+
+                    <h3>🏘️ Local Elections</h3>
+                    <div class="method-box">
+                        <p><strong>When:</strong> Varies by municipality (often off-year)</p>
+                        <p><strong>What:</strong> Vote for mayor, city council, school board, judges</p>
+                        <p><strong>Direct Impact:</strong> Affects your community directly</p>
+                        <p><strong>Participation:</strong> Typically lower turnout but high impact</p>
+                    </div>
+
+                    <h3>❓ Special/Referendum Elections</h3>
+                    <div class="method-box">
+                        <p><strong>When:</strong> As needed (fill vacancy, bond measure)</p>
+                        <p><strong>What:</strong> May include ballot measures, amendments, recalls</p>
+                        <p><strong>Important Votes:</strong> Direct say on specific issues</p>
+                        <p><strong>Pay Attention:</strong> These can significantly impact your area</p>
+                    </div>
+
+                    <h3>💡 Why All Elections Matter</h3>
+                    <ul>
+                        <li>Federal decisions affect national policy</li>
+                        <li>State elections shape state laws and funding</li>
+                        <li>Local elections directly impact your community</li>
+                        <li>Even small margins of votes decide major races</li>
+                    </ul>
+                </div>
+
+                <!-- FAQ -->
+                <div class="topic-content" id="faq" aria-hidden="true">
+                    <h2>Frequently Asked Questions</h2>
+
+                    <div class="faq-item">
+                        <h3>❓ Can I vote if I just moved?</h3>
+                        <p>You need to re-register in your new state or county. Update your registration with your new address as soon as possible.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>❓ What if I'm not sure where to vote?</h3>
+                        <p>Visit your state election website or call your local election office. They can tell you your polling place, or you can use polling place locator tools online.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>❓ Can I bring my phone/camera into the voting booth?</h3>
+                        <p>Generally NO. Most states prohibit phones and cameras to protect voter privacy and prevent ballot selling.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>❓ What if I miss a deadline?</h3>
+                        <p>Some states allow same-day registration or provisional voting. Check your state's rules, but don't rely on it—register early!</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>❓ Can someone see how I voted?</h3>
+                        <p>NO. Your vote is secret and anonymous. It cannot be traced back to you.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>❓ What if I make a mistake on my ballot?</h3>
+                        <p>Ask a poll worker for a new ballot. They'll spoil the old one and give you a fresh one at no penalty.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>❓ Is voting really secure?</h3>
+                        <p>Yes. Elections have multiple security measures: paper trails, audits, observers, and certification processes to catch errors or fraud.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>❓ What if I can't get to my polling place?</h3>
+                        <p>Options include early voting, mail-in ballots, absentee ballots, or curbside voting. Check what's available in your state.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>❓ Can family members help me decide who to vote for?</h3>
+                        <p>Yes, you can discuss with family, but your vote is your own choice. No one can force you to vote a certain way.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>❓ Where can I learn more about candidates?</h3>
+                        <p>Check your state's official voter guide, candidate websites, ballotpedia.org, vote411.org, or your local news sources.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>❓ What's the Electoral College?</h3>
+                        <p>In presidential elections, you vote for a slate of electors who then vote for president. Each state gets electors equal to its congressional representation.</p>
+                    </div>
+
+                    <div class="faq-item">
+                        <h3>❓ Can I vote if I have a criminal record?</h3>
+                        <p>It depends on your state and the conviction. Some states restore voting rights after completing sentences; others have different rules. Contact your state election office.</p>
+                    </div>
+                </div>
+
+                <!-- Polling Locations (Google Maps Integration) -->
+                <div class="topic-content" id="polling-locations" aria-hidden="true">
+                    <h2>Find Your Polling Location</h2>
+                    <p>Use the tools below to find where you can vote:</p>
+                    
+                    <div class="polling-search">
+                        <input type="text" id="zipCodeInput" placeholder="Enter your ZIP code" aria-label="ZIP code for polling location">
+                        <button id="findPollingBtn" class="search-btn">Find Polling Locations</button>
+                    </div>
+                    
+                    <div id="pollingResults" style="margin-top: 20px;"></div>
+                    
+                    <h3>📍 Alternative Options</h3>
+                    <p>Can't find your polling location? Try these resources:</p>
+                    <ul>
+                        <li><strong>Vote411.org</strong> - Nonpartisan voter guide</li>
+                        <li><strong>Ballotpedia.org</strong> - Election information by location</li>
+                        <li><strong>State Election Office</strong> - Official government resource</li>
+                        <li><strong>Google Maps</strong> - Search "polling places near me"</li>
+                    </ul>
+
+                    <h3>🎫 What to Bring</h3>
+                    <ul>
+                        <li>Valid photo ID (requirements vary by state)</li>
+                        <li>Your voter registration card (helpful but not always required)</li>
+                        <li>Sample ballot (optional, for reference)</li>
+                    </ul>
+
+                    <h3>⏰ Polling Hours</h3>
+                    <p>Most polling places are open from 7 AM to 7 PM on Election Day, but check your local rules.</p>
+                </div>
+
+                <!-- Election Timeline Calendar (Google Calendar Integration) -->
+                <div class="topic-content" id="election-timeline-calendar" aria-hidden="true">
+                    <h2>Election Timeline & Important Dates</h2>
+                    <p>Here are the key dates for the 2026 election cycle:</p>
+                    
+                    <div class="timeline-visual">
+                        <div class="timeline-item">
+                            <div class="timeline-date">January 2026</div>
+                            <div class="timeline-content">
+                                <h4>Early Planning</h4>
+                                <p>Candidates begin forming committees and planning campaigns</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">March 2026</div>
+                            <div class="timeline-content">
+                                <h4>Primary Announcements</h4>
+                                <p>States announce official primary election dates</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">April-June 2026</div>
+                            <div class="timeline-content">
+                                <h4>State Primaries & Caucuses</h4>
+                                <p>Voters choose preferred candidates by state</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">August 2026</div>
+                            <div class="timeline-content">
+                                <h4>Party Conventions</h4>
+                                <p>Major parties formally nominate their candidates</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">September-October 2026</div>
+                            <div class="timeline-content">
+                                <h4>General Campaign</h4>
+                                <p>Intensive campaigning and candidate debates</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">October 15, 2026</div>
+                            <div class="timeline-content">
+                                <h4>🗳️ ELECTION DAY</h4>
+                                <p><strong>General election</strong> - Vote for all major offices</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-date">November 2026</div>
+                            <div class="timeline-content">
+                                <h4>Vote Certification</h4>
+                                <p>Election results certified and candidates take office</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>📅 Add to Your Calendar</h3>
+                    <p>Subscribe to election notifications to get reminders for important dates:</p>
+                    <button id="addCalendarBtn" class="search-btn">Add to Google Calendar</button>
+                </div>
+
+                <!-- Voter Knowledge Quiz (Google Forms Integration) -->
+                <div class="topic-content" id="voter-quiz" aria-hidden="true">
+                    <h2>Test Your Voter Knowledge</h2>
+                    <p>See how much you've learned! Take our interactive quiz:</p>
+                    
+                    <div class="quiz-container">
+                        <h3>Quick Self-Assessment Quiz</h3>
+                        <p>Answer these questions to test your knowledge:</p>
+
+                        <div class="quiz-question">
+                            <h4>1. What is the minimum age requirement to vote?</h4>
+                            <label><input type="radio" name="q1"> 16 years old</label>
+                            <label><input type="radio" name="q1"> 18 years old</label>
+                            <label><input type="radio" name="q1"> 21 years old</label>
+                            <p class="answer" style="display:none;">✓ Correct: 18 years old</p>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>2. Can you bring your phone into the voting booth?</h4>
+                            <label><input type="radio" name="q2"> Yes, always</label>
+                            <label><input type="radio" name="q2"> No, in most states</label>
+                            <label><input type="radio" name="q2"> Only with permission</label>
+                            <p class="answer" style="display:none;">✓ Correct: No, in most states</p>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>3. What is a mail-in ballot?</h4>
+                            <label><input type="radio" name="q3"> A ballot sent by email</label>
+                            <label><input type="radio" name="q3"> A ballot mailed to your home for voting early</label>
+                            <label><input type="radio" name="q3"> A ballot you can buy at the post office</label>
+                            <p class="answer" style="display:none;">✓ Correct: A ballot mailed to your home for voting early</p>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>4. Is your vote secret?</h4>
+                            <label><input type="radio" name="q4"> No, election officials know</label>
+                            <label><input type="radio" name="q4"> Yes, your vote is anonymous</label>
+                            <label><input type="radio" name="q4"> Only if you request it</label>
+                            <p class="answer" style="display:none;">✓ Correct: Yes, your vote is anonymous</p>
+                        </div>
+
+                        <div class="quiz-question">
+                            <h4>5. How often are presidential elections held?</h4>
+                            <label><input type="radio" name="q5"> Every 2 years</label>
+                            <label><input type="radio" name="q5"> Every 4 years</label>
+                            <label><input type="radio" name="q5"> Every 6 years</label>
+                            <p class="answer" style="display:none;">✓ Correct: Every 4 years</p>
+                        </div>
+
+                        <button id="submitQuizBtn" class="search-btn" style="margin-top: 20px;">Submit Quiz</button>
+                        <div id="quizResults" style="margin-top: 20px; display:none;"></div>
+                    </div>
+
+                    <h3>📊 Full Survey</h3>
+                    <p>Want to provide feedback or take a more comprehensive assessment? Fill out our Google Form:</p>
+                    <iframe id="googleFormFrame" src="https://docs.google.com/forms/d/e/1FAIpQLSeUqYxDx5JZqvxZ4sPm-QXKqzxDKb7q4qZqvzDKb7q4qZqvzD/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0" title="Election Education Feedback Form">Loading…</iframe>
+                </div>
+
+                <!-- Video Resources (YouTube Integration) -->
+                <div class="topic-content" id="video-resources" aria-hidden="true">
+                    <h2>📹 Election Education Videos</h2>
+                    <p>Learn through engaging video content from educational creators:</p>
+                    
+                    <div class="video-grid">
+                        <div class="video-card">
+                            <h3>How to Register to Vote</h3>
+                            <p>Step-by-step guide to voter registration</p>
+                            <button class="search-btn" onclick="window.open('https://www.youtube.com/results?search_query=how+to+register+to+vote', '_blank')">Watch Videos</button>
+                        </div>
+
+                        <div class="video-card">
+                            <h3>What Happens on Election Day</h3>
+                            <p>A detailed walkthrough of the voting process</p>
+                            <button class="search-btn" onclick="window.open('https://www.youtube.com/results?search_query=election+day+voting+process', '_blank')">Watch Videos</button>
+                        </div>
+
+                        <div class="video-card">
+                            <h3>Understanding Your Voting Rights</h3>
+                            <p>Know your rights as a voter</p>
+                            <button class="search-btn" onclick="window.open('https://www.youtube.com/results?search_query=voter+rights+education', '_blank')">Watch Videos</button>
+                        </div>
+
+                        <div class="video-card">
+                            <h3>Voting Methods Explained</h3>
+                            <p>In-person, mail-in, and early voting options</p>
+                            <button class="search-btn" onclick="window.open('https://www.youtube.com/results?search_query=voting+methods+mail+in+early+voting', '_blank')">Watch Videos</button>
+                        </div>
+
+                        <div class="video-card">
+                            <h3>How Votes Are Counted</h3>
+                            <p>The election security and vote counting process</p>
+                            <button class="search-btn" onclick="window.open('https://www.youtube.com/results?search_query=how+votes+are+counted+election+security', '_blank')">Watch Videos</button>
+                        </div>
+
+                        <div class="video-card">
+                            <h3>Election Types Explained</h3>
+                            <p>Presidential, midterm, and local elections</p>
+                            <button class="search-btn" onclick="window.open('https://www.youtube.com/results?search_query=types+of+elections+explained', '_blank')">Watch Videos</button>
+                        </div>
+                    </div>
+
+                    <h3>🎓 Educational Channels</h3>
+                    <ul>
+                        <li><a href="https://www.youtube.com/c/iCivics" target="_blank">iCivics - Election Education Games</a></li>
+                        <li><a href="https://www.youtube.com/results?search_query=election+education+classroom" target="_blank">YouTube: Election Education for Classrooms</a></li>
+                        <li><a href="https://www.youtube.com/results?search_query=civics+education" target="_blank">YouTube: Civics Education Channel</a></li>
+                    </ul>
+                </div>
+
+                <!-- Shareable Documents (Google Drive Integration) -->
+                <div class="topic-content" id="shareable-docs" aria-hidden="true">
+                    <h2>📄 Shareable Election Documents</h2>
+                    <p>Download, view, and share these resources with your community:</p>
+                    
+                    <div class="document-grid">
+                        <div class="document-card">
+                            <h3>📋 Voter Registration Checklist</h3>
+                            <p>Everything you need to register to vote</p>
+                            <button class="search-btn" onclick="window.open('https://docs.google.com/document/create', '_blank')">Access Template</button>
+                        </div>
+
+                        <div class="document-card">
+                            <h3>🗳️ Election Day Guide</h3>
+                            <p>What to bring and expect at the polling place</p>
+                            <button class="search-btn" onclick="window.open('https://docs.google.com/document/create', '_blank')">Access Template</button>
+                        </div>
+
+                        <div class="document-card">
+                            <h3>👥 Voter Rights Reference</h3>
+                            <p>Your complete voting rights and protections</p>
+                            <button class="search-btn" onclick="window.open('https://docs.google.com/document/create', '_blank')">Access Template</button>
+                        </div>
+
+                        <div class="document-card">
+                            <h3>🌍 State Election Database</h3>
+                            <p>State-specific deadlines and requirements</p>
+                            <button class="search-btn" onclick="window.open('https://docs.google.com/spreadsheets/create', '_blank')">Access Spreadsheet</button>
+                        </div>
+
+                        <div class="document-card">
+                            <h3>🎓 Election Curriculum</h3>
+                            <p>Full teaching materials for educators</p>
+                            <button class="search-btn" onclick="window.open('https://classroom.google.com', '_blank')">Access Classroom</button>
+                        </div>
+
+                        <div class="document-card">
+                            <h3>📊 Infographics & Graphics</h3>
+                            <p>Shareable images for social media</p>
+                            <button class="search-btn" onclick="window.open('https://drive.google.com', '_blank')">Access Google Drive</button>
+                        </div>
+                    </div>
+
+                    <h3>🔗 Share With Your Network</h3>
+                    <p>Help spread voter education:</p>
+                    <div class="share-section">
+                        <button class="share-btn" onclick="copyLink()">📋 Copy Link to Clipboard</button>
+                        <button class="share-btn" onclick="shareEmail()">✉️ Share via Email</button>
+                        <button class="share-btn" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=' + window.location.href, '_blank')">📘 Share on Facebook</button>
+                        <button class="share-btn" onclick="window.open('https://twitter.com/intent/tweet?url=' + window.location.href, '_blank')">𝕏 Share on X/Twitter</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 Election Education Mitra By Shivam. Helping voters understand elections, one question at a time.</p>
+            <p><small>Disclaimer: This tool provides general educational information. For official details, check your state's election website.</small></p>
+        </footer>
+    </div>
+<script src="script.js"></script>
+<script src="test.js"></script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ELECTION-APP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-ELECTION-APP', {
+            'page_path': window.location.pathname,
+            'page_title': 'Election Education Assistant'
+        });
+        
+        // Track topic views
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                gtag('event', 'view_topic', {
+                    'topic': this.getAttribute('data-topic')
+                });
+            });
+        });
+        
+        // Track search usage
+        const searchBtn = document.getElementById('searchBtn');
+        if (searchBtn) {
+            searchBtn.addEventListener('click', function() {
+                const query = document.getElementById('searchInput').value;
+                gtag('event', 'search', {
+                    'search_term': query
+                });
+            });
+        }
+    </script>
+</body>
+</html>
